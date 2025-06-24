@@ -60,9 +60,10 @@ def predict():
         return jsonify({'error': str(e)}), 400
 
 if __name__ == '__main__':
-    # Fix for watchdog EVENT_TYPE_OPENED error
-    # Option 1: Disable debug mode
-    app.run(port=5000)
+    # For local development, use:
+    # app.run(port=5000)
     
-    # Option 2: If you need debug mode, use a different reloader
-    # app.run(debug=True, port=5000, use_reloader=True, reloader_type='stat')
+    # For production with Render, allow binding to the PORT environment variable
+    import os
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
