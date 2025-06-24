@@ -4,7 +4,7 @@
 
 This interactive web application predicts the likelihood of diabetes using machine learning based on the Pima Indian Diabetes Dataset. Users can input their health metrics and receive a personalized risk assessment with detailed visualizations.
 
-![Diabetes Prediction App Screenshot](https://i.postimg.cc/fk55ykHy/diabetes-app-screenshot.jpg)
+<img src="https://i.postimg.cc/fk55ykHy/diabetes-app-screenshot.jpg" width="600" alt="Diabetes Prediction App Screenshot">
 
 ## Features
 
