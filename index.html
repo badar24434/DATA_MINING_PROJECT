@@ -1,0 +1,202 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diabetes Prediction with AI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+      <h1>Predicting Diabetes with AI</h1>
+      <p>Based on real medical data from female patients of Pima Indian heritage, this project uses machine learning to
+        predict the likelihood of diabetes.</p>
+      <button id="getStarted" class="btn btn-primary">Get Started</button>
+    </div>
+    <div class="animated-bg"></div>
+  </section>
+
+  <!-- Educational Section -->
+  <section id="education" class="education-section">
+    <h2 data-aos="fade-up">Understanding Diabetes Prediction</h2>
+
+    <div class="info-cards">
+      <div class="flip-card" data-aos="flip-left" data-aos-delay="100">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>What is Diabetes?</h3>
+            <i class="fas fa-question-circle icon"></i>
+          </div>
+          <div class="flip-card-back">
+            <p>Diabetes is a chronic disease that occurs when the pancreas cannot produce enough insulin or when the body
+              cannot effectively use insulin, leading to high blood sugar levels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-aos="flip-left" data-aos-delay="200">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Why Early Prediction Matters</h3>
+            <i class="fas fa-chart-line icon"></i>
+          </div>
+          <div class="flip-card-back">
+            <p>Early prediction of diabetes can help prevent complications through lifestyle changes and timely medical
+              intervention, significantly improving quality of life.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" data-aos="flip-left" data-aos-delay="300">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <h3>Key Health Indicators</h3>
+            <i class="fas fa-heartbeat icon"></i>
+          </div>
+          <div class="flip-card-back">
+            <ul>
+              <li><strong>Glucose:</strong> Blood sugar level</li>
+              <li><strong>BMI:</strong> Body Mass Index</li>
+              <li><strong>Blood Pressure:</strong> Diastolic blood pressure</li>
+              <li><strong>Insulin:</strong> Insulin level in blood</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- User Input Form -->
+  <section id="prediction-form" class="form-section">
+    <h2 data-aos="fade-up">Check Your Diabetes Risk</h2>
+    <div class="form-container" data-aos="fade-up" data-aos-delay="200">
+      <form id="diabetesForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="pregnancies" title="Number of times pregnant">Pregnancies</label>
+            <input type="number" id="pregnancies" name="pregnancies" min="0" max="20" required>
+          </div>
+
+          <div class="form-group">
+            <label for="glucose"
+              title="Plasma glucose concentration (2 hours in an oral glucose tolerance test)">Glucose (mg/dL)</label>
+            <input type="number" id="glucose" name="glucose" min="0" max="500" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bloodPressure" title="Diastolic blood pressure (mm Hg)">Blood Pressure (mmHg)</label>
+            <input type="number" id="bloodPressure" name="bloodPressure" min="0" max="200" required>
+          </div>
+
+          <div class="form-group">
+            <label for="skinThickness" title="Triceps skin fold thickness (mm)">Skin Thickness (mm)</label>
+            <input type="number" id="skinThickness" name="skinThickness" min="0" max="100" required>
+          </div>
+
+          <div class="form-group">
+            <label for="insulin" title="2-Hour serum insulin (mu U/ml)">Insulin (μU/mL)</label>
+            <input type="number" id="insulin" name="insulin" min="0" max="900" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bmi" title="Body mass index (weight in kg/(height in m)^2)">BMI (kg/m²)</label>
+            <input type="number" id="bmi" name="bmi" min="0" max="70" step="0.1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="dpf"
+              title="Diabetes pedigree function (a function which scores likelihood of diabetes based on family history)">Diabetes
+              Pedigree Function</label>
+            <input type="number" id="dpf" name="dpf" min="0" max="3" step="0.001" required>
+          </div>
+
+          <div class="form-group">
+            <label for="age" title="Age in years">Age (years)</label>
+            <input type="number" id="age" name="age" min="0" max="120" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-predict">Predict</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Visualization Dashboard -->
+  <section id="results" class="results-section hidden">
+    <h2>Your Prediction Results</h2>
+    <div class="result-container">
+      <div class="prediction-result">
+        <div id="result-message" class="result-message"></div>
+        <!-- The risk-summary will be inserted here by JavaScript -->
+        <div id="confidence-gauge" class="gauge-container">
+          <canvas id="gaugeChart"></canvas>
+        </div>
+      </div>
+
+      <div class="data-visualization">
+        <h3>Your Health Indicators</h3>
+        <div class="chart-container">
+          <canvas id="barChart"></canvas>
+        </div>
+        <!-- Radar chart will be added here dynamically -->
+      </div>
+
+      <div class="data-table">
+        <h3>Summary of Your Inputs</h3>
+        <table id="summaryTable">
+          <thead>
+            <tr>
+              <th>Indicator</th>
+              <th>Your Value</th>
+              <th>Normal Range</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Will be filled by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="footer-section">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>About the Dataset</h3>
+        <p>This project uses the Pima Indian Diabetes Dataset from
+          <a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database" target="_blank">
+            Kaggle
+          </a>
+        </p>
+      </div>
+      <div class="footer-links">
+        <h3>Project Links</h3>
+        <a href="https://github.com/yourusername/diabetes-prediction" target="_blank">
+          <i class="fab fa-github"></i> GitHub Repository
+        </a>
+        <div class="social-icons">
+          <a href="#" title="Share on Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Share on LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" title="Share on Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Diabetes Prediction Project. For educational purposes only.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
