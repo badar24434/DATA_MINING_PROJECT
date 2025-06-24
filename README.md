@@ -4,7 +4,7 @@
 
 This interactive web application predicts the likelihood of diabetes using machine learning based on the Pima Indian Diabetes Dataset. Users can input their health metrics and receive a personalized risk assessment with detailed visualizations.
 
-<img src="https://i.postimg.cc/tCGcrxW3/image.png/diabetes-app-screenshot.jpg" width="600" alt="Diabetes Prediction App Screenshot">
+![Diabetes Prediction App Screenshot](https://i.postimg.cc/fk55ykHy/diabetes-app-screenshot.jpg)
 
 ## Features
 
@@ -94,13 +94,23 @@ DATA_MINING_PROJECT/
 
 ## Model Information
 
-The prediction model (Random Forest Classifier) was trained on the Pima Indian Diabetes Dataset, which contains health data from female patients of Pima Indian heritage. The model considers various health indicators to predict diabetes risk.
+The prediction model was trained on the Pima Indian Diabetes Dataset, which contains health data from female patients of Pima Indian heritage. The model considers various health indicators to predict diabetes risk.
 
 ## Troubleshooting
 
 - **Server Won't Start**: Ensure no other applications are using port 5000
 - **Model Loading Error**: Verify that your model file exists in the models directory
 - **Prediction Error**: Check that input values are within reasonable ranges
+
+## Contributing
+
+Contributions to improve the application are welcome. Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
 
 ## License
 
@@ -111,3 +121,55 @@ This project is for educational purposes only. Please see the LICENSE file for d
 - The Pima Indian Diabetes Dataset from [Kaggle](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database)
 - Chart.js for data visualization
 - AOS.js for scroll animations
+
+## Deployment Options
+
+You can easily deploy this application online using several platforms:
+
+### Deploy to Render (Recommended)
+
+1. Create an account on [Render](https://render.com/)
+2. Click "New +" and select "Web Service"
+3. Connect your GitHub repository
+4. Use these settings:
+   - **Name**: diabetes-prediction (or your preferred name)
+   - **Environment**: Python 3
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `gunicorn app:app`
+5. Click "Create Web Service"
+
+Your app will be deployed at `https://your-app-name.onrender.com`
+
+### Deploy to PythonAnywhere
+
+1. Create an account on [PythonAnywhere](https://www.pythonanywhere.com/)
+2. Upload your project files using the Files tab
+3. Create a new web app from the Web tab:
+   - Select Flask
+   - Choose Python 3.9 or higher
+4. Set your WSGI configuration file to point to your `app.py`
+5. Install requirements using the Consoles tab:
+   ```
+   pip install -r requirements.txt
+   ```
+
+### Deploy to Heroku
+
+1. Create an account on [Heroku](https://heroku.com/)
+2. Install the Heroku CLI
+3. Create a `Procfile` in your project root with this content:
+   ```
+   web: gunicorn app:app
+   ```
+4. Initialize git, commit your files, and deploy:
+   ```
+   heroku login
+   heroku create your-app-name
+   git push heroku main
+   ```
+
+## Important Deployment Notes
+
+- Make sure your model file (`diabetes_model.pkl`) is included in your repository or uploaded to the service
+- Free tiers of hosting services may have limited resources or "sleep" after periods of inactivity
+- Consider adding proper error handling for production environments
