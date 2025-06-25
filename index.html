@@ -79,45 +79,66 @@
       <form id="diabetesForm">
         <div class="form-grid">
           <div class="form-group">
-            <label for="pregnancies" title="Number of times pregnant">Pregnancies</label>
+            <label for="pregnancies" title="">
+              Pregnancies
+              <i class="fas fa-info-circle info-icon" data-normal="Enter your number of pregnancies"></i>
+            </label>
             <input type="number" id="pregnancies" name="pregnancies" min="0" max="20" required>
           </div>
 
           <div class="form-group">
-            <label for="glucose"
-              title="Plasma glucose concentration (2 hours in an oral glucose tolerance test)">Glucose (mg/dL)</label>
+            <label for="glucose" title="">
+              Glucose (mg/dL)
+              <i class="fas fa-info-circle info-icon" data-normal="Normal: 70-99 mg/dL"></i>
+            </label>
             <input type="number" id="glucose" name="glucose" min="0" max="500" required>
           </div>
 
           <div class="form-group">
-            <label for="bloodPressure" title="Diastolic blood pressure (mm Hg)">Blood Pressure (mmHg)</label>
+            <label for="bloodPressure" title="">
+              Blood Pressure (mmHg)
+              <i class="fas fa-info-circle info-icon" data-normal="Normal: 90/60 - 120/80 mmHg"></i>
+            </label>
             <input type="number" id="bloodPressure" name="bloodPressure" min="0" max="200" required>
           </div>
 
           <div class="form-group">
-            <label for="skinThickness" title="Triceps skin fold thickness (mm)">Skin Thickness (mm)</label>
+            <label for="skinThickness" title="">
+              Skin Thickness (mm)
+              <i class="fas fa-info-circle info-icon" data-normal="Normal: 15-20 mm"></i>
+            </label>
             <input type="number" id="skinThickness" name="skinThickness" min="0" max="100" required>
           </div>
 
           <div class="form-group">
-            <label for="insulin" title="2-Hour serum insulin (mu U/ml)">Insulin (μU/mL)</label>
+            <label for="insulin" title="">
+              Insulin (μU/mL)
+              <i class="fas fa-info-circle info-icon" data-normal="Normal: 16-166 μU/mL"></i>
+            </label>
             <input type="number" id="insulin" name="insulin" min="0" max="900" required>
           </div>
 
           <div class="form-group">
-            <label for="bmi" title="Body mass index (weight in kg/(height in m)^2)">BMI (kg/m²)</label>
+            <label for="bmi" title="">
+              BMI (kg/m²)
+              <i class="fas fa-info-circle info-icon" data-normal="Normal: 18.5-24.9 kg/m²"></i>
+            </label>
             <input type="number" id="bmi" name="bmi" min="0" max="70" step="0.1" required>
           </div>
 
           <div class="form-group">
-            <label for="dpf"
-              title="Diabetes pedigree function (a function which scores likelihood of diabetes based on family history)">Diabetes
-              Pedigree Function</label>
+            <label for="dpf" title="">
+              Diabetes Pedigree Function
+              <i class="fas fa-info-circle info-icon" data-normal="Normal: <0.5"></i>
+            </label>
             <input type="number" id="dpf" name="dpf" min="0" max="3" step="0.001" required>
           </div>
 
           <div class="form-group">
-            <label for="age" title="Age in years">Age (years)</label>
+            <label for="age" title="">
+              Age (years)
+              <i class="fas fa-info-circle info-icon" data-normal="Enter your age"></i>
+            </label>
             <input type="number" id="age" name="age" min="0" max="120" required>
           </div>
         </div>

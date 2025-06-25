@@ -63,7 +63,8 @@ document.addEventListener('DOMContentLoaded', function() {
         processForm();
     });
     
-    // Add tooltip functionality for form labels
+    // Add tooltip functionality for form labels - disable this to prevent overlap
+    /* 
     const formLabels = document.querySelectorAll('.form-group label');
     formLabels.forEach(label => {
         const tooltip = label.getAttribute('title');
@@ -74,6 +75,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             label.addEventListener('mouseleave', function() {
                 hideTooltip();
+            });
+        }
+    });
+    */
+
+    // Add tooltip functionality for info icons
+    const infoIcons = document.querySelectorAll('.info-icon');
+    infoIcons.forEach(icon => {
+        const normalRange = icon.getAttribute('data-normal');
+        if (normalRange) {
+            icon.addEventListener('mouseenter', function(e) {
+                e.stopPropagation(); // Prevent the parent label's tooltip from showing
+                showNormalRangeTooltip(e, normalRange);
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                hideNormalRangeTooltip();
             });
         }
     });
@@ -102,6 +120,46 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function hideTooltip() {
         const tooltip = document.querySelector('.tooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+    
+    // Normal range tooltip functions
+    function showNormalRangeTooltip(e, text) {
+        // Hide any existing tooltips first
+        hideTooltip();
+        hideNormalRangeTooltip();
+        
+        let tooltip = document.createElement('div');
+        tooltip.className = 'normal-range-tooltip';
+        tooltip.textContent = text;
+        tooltip.style.position = 'absolute';
+        tooltip.style.backgroundColor = '#2c3e50';
+        tooltip.style.color = '#fff';
+        tooltip.style.padding = '8px 12px';
+        tooltip.style.borderRadius = '4px';
+        tooltip.style.fontSize = '14px';
+        tooltip.style.zIndex = '1000';
+        tooltip.style.maxWidth = '250px';
+        tooltip.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+        
+        document.body.appendChild(tooltip);
+        
+        // Position the tooltip relative to the icon
+        const rect = e.target.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        tooltip.style.left = `${rect.left + window.pageXOffset}px`;
+        tooltip.style.top = `${rect.bottom + scrollTop + 5}px`;
+        
+        // Make tooltip visible immediately
+        tooltip.style.opacity = '1';
+        tooltip.style.transform = 'translateY(0)';
+    }
+    
+    function hideNormalRangeTooltip() {
+        const tooltip = document.querySelector('.normal-range-tooltip');
         if (tooltip) {
             tooltip.remove();
         }

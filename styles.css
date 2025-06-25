@@ -272,6 +272,40 @@ section {
     cursor: help;
 }
 
+.info-icon {
+    color: var(--primary-color);
+    margin-left: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.info-icon:hover {
+    color: var(--secondary-color);
+}
+
+/* Tooltip styling */
+.normal-range-tooltip {
+    position: absolute;
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    max-width: 250px;
+    pointer-events: none;
+    opacity: 1;
+    white-space: nowrap;
+}
+
+.normal-range-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .form-group input {
     width: 100%;
     padding: 10px;
